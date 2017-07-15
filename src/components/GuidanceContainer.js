@@ -1,4 +1,8 @@
-/**/
+/*
+ * GuidanceContainer
+ *
+ * GuidanceContainer is responsible for displaying a guidance stimulus.
+ */
 
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -14,19 +18,18 @@ class GuidanceContainer extends React.Component {
   render() {
     return(
       <View style={{
-        flex: 1,
         alignItems: 'center',
+        flex: 1,
         justifyContent: 'center'
       }}>
-        <GuidanceStimulus guidanceId={this.props.guidanceId}>
-        </GuidanceStimulus>
+        <GuidanceStimulus guidanceID={this.props.guidanceID} />
       </View>
     );
   }
 }
 
 GuidanceContainer.propTypes = {
-  guidanceId: PropTypes.string.isRequired
+  guidanceID: PropTypes.string.isRequired
 };
 
 export default GuidanceContainer;

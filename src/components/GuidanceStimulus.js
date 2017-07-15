@@ -1,4 +1,8 @@
-/**/
+/*
+ * GuidanceStimulus
+ *
+ * GuidanceStimulus is a guidance stimulus-specific Stimulus.
+ */
 
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -12,14 +16,13 @@ class GuidanceStimulus extends React.Component {
 
   render() {
     return(
-      <Stimulus stimulus={this.props.guidanceId}>
-      </Stimulus>
+      <Stimulus stimulus={this.props.guidanceID} />
     );
   }
 }
 
 GuidanceStimulus.propTypes = {
-  guidanceId: PropTypes.string.isRequired
+  guidanceID: PropTypes.string.isRequired
 };
 
 export default GuidanceStimulus;

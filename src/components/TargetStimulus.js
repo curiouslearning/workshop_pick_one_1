@@ -1,4 +1,8 @@
-/**/
+/*
+ * TargetStimulus
+ *
+ * TargetStimulus is a target/foil-specific Stimulus.
+ */
 
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -18,8 +22,11 @@ class TargetStimulus extends React.Component {
 
   render() {
     return(
-      <Stimulus stimulus={this.props.stimulus} onPress={() => this._onPressTarget(this.props.stimulus)} selected={this.props.selected} target={this.props.target}>
-      </Stimulus>
+      <Stimulus
+        onPress={() => this._onPressTarget(this.props.stimulus)}
+        selected={this.props.selected}
+        stimulus={this.props.stimulus}
+        target={this.props.target} />
     );
   }
 }

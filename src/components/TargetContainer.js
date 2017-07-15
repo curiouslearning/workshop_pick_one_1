@@ -1,4 +1,10 @@
-/**/
+/*
+ * TargetContainer
+ *
+ * TargetContainer is responsible for:
+ * - displaying the target and foils, and
+ * - playing positive/negative audio feedback.
+ */
 
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -32,12 +38,12 @@ class TargetContainer extends React.Component {
     incorrectSound.release();
   }
 
-  _onPressTarget(objId, target) {
+  _onPressTarget(objID, target) {
     if (this.props.onPress) {
-      this.props.onPress(objId, target);
+      this.props.onPress(objID, target);
     }
 
-    if (objId == this.props.targetId) {
+    if (objID == this.props.targetID) {
       correctSound.play();
     } else {
       incorrectSound.play();
@@ -45,27 +51,44 @@ class TargetContainer extends React.Component {
   }
 
   render() {
-    const target = this.props.targetId;
-    let rows = Array.apply(null, {length: this.props.dimensions[0] + 1}).map(Number.call, Number);
-    let columns = Array.apply(null, {length: this.props.dimensions[1] + 1}).map(Number.call, Number);
+    const target = this.props.targetID;
 
+    let rows = Array.apply(
+      null,
+      {length: this.props.dimensions[0] + 1}
+    ).map(Number.call, Number);
+
+    let columns = Array.apply(
+      null,
+      {length: this.props.dimensions[1] + 1}
+    ).map(Number.call, Number);
+
+    // arrange stimuli according to pos corrdinates specified in JSON file.
     var stimuli = rows.map(function(row) {
-      let stimuli_row = columns.map(function(col) {
+      let stimuliRow = columns.map(function(col) {
         let stimulus = undefined;
 
         this.props.objArray.forEach(function(obj, index) {
           if (parseInt(obj.pos[0]) == row && parseInt(obj.pos[1]) == col) {
-            stimulus = <TargetStimulus key={index} stimulus={obj.obj_id} target={obj.obj_id == target} onPress={() => this._onPressTarget(obj.obj_id, target)} selected={this.props.selected}></TargetStimulus>;
+            stimulus = <TargetStimulus
+              key={index}
+              onPress={() => this._onPressTarget(obj.obj_id, target)}
+              selected={this.props.selected}
+              stimulus={obj.obj_id}
+              target={obj.obj_id == target} />;
           }
         }, this);
 
         return stimulus;
       }, this);
 
-      return <View key={row} style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-around'}}>
-        { stimuli_row }
-      </View>;
-
+      return (
+        <View
+          key={row}
+          style={{flex: 1, flexDirection: 'row', justifyContent: 'space-around'}}>
+          {stimuliRow}
+        </View>
+      );
     }, this);
 
     return(
@@ -84,10 +107,9 @@ class TargetContainer extends React.Component {
 TargetContainer.propTypes = {
   dimensions: PropTypes.arrayOf(PropTypes.number.isRequired),
   objArray: PropTypes.arrayOf(PropTypes.object.isRequired),
-  objectIds: PropTypes.arrayOf(PropTypes.string.isRequired),
   onPress: PropTypes.func,
   selected: PropTypes.string,
-  targetId: PropTypes.string.isRequired
+  targetID: PropTypes.string.isRequired
 };
 
 export default TargetContainer;

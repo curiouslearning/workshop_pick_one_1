@@ -1,4 +1,10 @@
-/**/
+/*
+ * Stimulus
+ *
+ * Stimulus is responsible for:
+ * - displaying an audio/image/letter/word stimulus, and
+ * - playing audio for audio stimluli.
+ */
 
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -22,10 +28,6 @@ class Stimulus extends React.Component {
     this.audio;
   }
 
-  componentDidMount() {
-
-  }
-
   componentWillUnMount() {
     if (this.stimulusDetails.type == 'audio') {
       this.audio.release();
@@ -39,18 +41,29 @@ class Stimulus extends React.Component {
   _onPressStimulus(e) {
     e.preventDefault();
     if (this.props.onPress) {
-      this.props.onPress(this.props.objId);
+      this.props.onPress(this.props.objID);
     }
   }
 
   render() {
+    // display positive/negative feedback
     if (this.props.selected == this.props.stimulus && this.props.target == true) {
-      return(<Image source={require('PickOne/src/images/dog_celebrate01.png')} style={{width: stimulusDimension, height: stimulusDimension}}/>);
+      return(
+        <Image
+          source={require('PickOne/src/images/dog_celebrate01.png')}
+          style={{width: stimulusDimension, height: stimulusDimension}}/>
+      );
     } else if (this.props.selected == this.props.stimulus && this.props.target == false) {
-      return(<Image source={require('PickOne/src/images/dog_annoyed02.png')} style={{width: stimulusDimension, height: stimulusDimension}}/>);
+      return(
+        <Image
+          source={require('PickOne/src/images/dog_annoyed02.png')}
+          style={{width: stimulusDimension, height: stimulusDimension}}/>
+      );
     }
 
+    // display stimulus
     this.stimulusDetails = gameUtil.getStimulus(this.props.stimulus);
+
     if (this.stimulusDetails.type == 'audio') {
       this.audio = new Sound(this.stimulusDetails.stimulus, Sound.MAIN_BUNDLE, (error) => {
         if (error) {
@@ -66,17 +79,36 @@ class Stimulus extends React.Component {
 
       return(
         <TouchableHighlight onPress={(e) => this._onPressAudio(e)}>
-          <Image source={require('PickOne/src/images/audioOn.png')} style={{borderColor: 'black', borderRadius: 3, borderWidth: 3, width: 100, height: 100}}/>
+          <Image
+            source={require('PickOne/src/images/audioOn.png')}
+            style={{
+              borderColor: 'black',
+              borderRadius: 3,
+              borderWidth: 3,
+              height: 100,
+              width: 100}} />
         </TouchableHighlight>
       );
     } else if (this.stimulusDetails.type == 'image') {
       return(
-        <Image source={gameUtil.images[this.stimulusDetails.object_id]} style={{width: stimulusDimension, height: stimulusDimension}}/>
+        <Image
+          source={gameUtil.images[this.stimulusDetails.object_id]}
+          style={{width: stimulusDimension, height: stimulusDimension}} />
       );
     } else {
       return(
-        <TouchableHighlight onPress={(e) => this._onPressStimulus(e)} style={{borderColor: 'black', borderRadius: 3, borderWidth: 3, width: stimulusDimension, height: stimulusDimension}}>
-          <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+        <TouchableHighlight
+          onPress={(e) => this._onPressStimulus(e)}
+          style={{
+            borderColor: 'black',
+            borderRadius: 3,
+            borderWidth: 3,
+            height: stimulusDimension,
+            width: stimulusDimension}}>
+          <View style={{
+            alignItems: 'center',
+            flex: 1,
+            justifyContent: 'center'}}>
             <Text style={{color: 'black', fontSize: 50}}>
               { this.props.stimulus }
             </Text>
@@ -88,7 +120,7 @@ class Stimulus extends React.Component {
 }
 
 Stimulus.propTypes = {
-  objId: PropTypes.string,
+  objID: PropTypes.string,
   onPress: PropTypes.func,
   selected: PropTypes.string,
   stimulus: PropTypes.string,

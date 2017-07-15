@@ -1,10 +1,17 @@
-/**/
+/*
+ * GameContainer
+ *
+ * GameContainer is responsible for:
+ * - keeping track of game status,
+ * - moving a user on to the next trial, and
+ * - data reporting.
+ */
 
 import PropTypes from 'prop-types';
 import React from 'react';
 import { View } from 'react-native';
 
-import CuriousLearningDataAPI from 'PickOne/src/CuriousLearningDataAPI';
+import curious from 'PickOne/src/CuriousLearningDataAPI';
 import gameUtil from 'PickOne/src/gameUtil';
 import PickOneContainer from './PickOneContainer';
 
@@ -21,23 +28,23 @@ class GameContainer extends React.Component {
 
   componentWillMount() {
     const trial = gameUtil.getTrial(this.props.trials[0]);
-    const objectIds = gameUtil.getObjectIds(trial.obj_array);
+    const objectIDs = gameUtil.getObjectIDs(trial.obj_array);
     const dimensions = gameUtil.calcDimensions(trial.obj_array);
 
     this.setState({
       arraySize: parseInt(trial.array_size),
       objArray: trial.obj_array,
-      objectIds: objectIds,
+      objectIDs: objectIDs,
       dimensions: dimensions,
-      guidanceId: trial.guidance_id,
-      targetId: trial.target_id,
+      guidanceID: trial.guidance_id,
+      targetID: trial.target_id,
       trialStartTime: new Date()
     });
   }
 
-  _onPressTarget(objId, target) {
+  _onPressTarget(objID, target) {
     if (this.props.onPress) {
-      this.props.onPress(objId, target);
+      this.props.onPress(objID, target);
     }
 
     let elapsedSeconds = (new Date() - this.state.trialStartTime) / 1000;
@@ -45,19 +52,19 @@ class GameContainer extends React.Component {
     let qCorrect = this.state.questionsCorrect;
 
     this.setState({
-      selected: objId,
-      selectedCorrect: objId == target,
+      selected: objID,
+      selectedCorrect: objID == target,
       questionsAnswered: qAnswered + 1
     });
 
-    if (objId == target) {
+    if (objID == target) {
       this.setState({questionsCorrect: qCorrect + 1});
     }
 
     let trial = gameUtil.getTrial(this.props.trials[this.state.questionsAnswered]);
     let foilList = [];
 
-    this.state.objectIds.forEach(
+    this.state.objectIDs.forEach(
       function(obj) {
         if (obj != target) {
           foilList.push(obj);
@@ -65,30 +72,30 @@ class GameContainer extends React.Component {
       }
     );
 
-    CuriousLearningDataAPI.reportResponse(
+    curious.reportResponse(
       this.props.appID,
       this.props.appID,
       trial.level_id,
       trial.trial_id,
       new Date(),
-      objId,
+      objID,
       foilList,
       elapsedSeconds,
-      objId == target
+      objID == target
     );
 
     setTimeout(function(){
       let trial = gameUtil.getTrial(this.props.trials[this.state.questionsAnswered]);
-      let objectIds = gameUtil.getObjectIds(trial.obj_array);
+      let objectIDs = gameUtil.getObjectIDs(trial.obj_array);
       let dimensions = gameUtil.calcDimensions(trial.obj_array);
 
       this.setState({
         arraySize: parseInt(trial.array_size),
         objArray: trial.obj_array,
-        objectIds: objectIds,
+        objectIDs: objectIDs,
         dimensions: dimensions,
-        guidanceId: trial.guidance_id,
-        targetId: trial.target_id,
+        guidanceID: trial.guidance_id,
+        targetID: trial.target_id,
         trialStartTime: new Date(),
         selected: undefined,
         selectedCorrect: undefined
@@ -99,8 +106,16 @@ class GameContainer extends React.Component {
   render() {
     return(
       <View style={{flex: 1}}>
-        <PickOneContainer arraySize={this.state.arraySize} objArray={this.state.objArray} objectIds={this.state.objectIds} dimensions={this.state.dimensions} guidanceId={this.state.guidanceId} targetId={this.state.targetId} selected={this.state.selected} selectedCorrect={this.state.selectedCorrect} onPress={(objId, target) => this._onPressTarget(objId, target)}>
-        </PickOneContainer>
+        <PickOneContainer
+          arraySize={this.state.arraySize}
+          dimensions={this.state.dimensions}
+          guidanceID={this.state.guidanceID}
+          objArray={this.state.objArray}
+          objectIDs={this.state.objectIDs}
+          onPress={(objId, target) => this._onPressTarget(objId, target)}
+          selected={this.state.selected}
+          selectedCorrect={this.state.selectedCorrect}
+          targetID={this.state.targetID} />
       </View>
     );
   }

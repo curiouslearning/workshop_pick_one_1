@@ -1,12 +1,20 @@
-/**/
+/**
+ * Game Utils
+ */
 
-var pick_one_data = require('./data/pick_one.json');
+// Specify game JSON data
+const pickOneData = require('./data/pick_one.json');
 
+// Specify image files
 const images = {
   'cat_pic': require('PickOne/src/images/cat.jpg')
 };
 
 function calcDimensions (objArray) {
+  /**
+   * Based on a array of row/column coordinates, calculate the dimensions of
+   * stimuli to display.
+   */
   let rows = [];
   let columns = [];
   let dimensions = [];
@@ -22,22 +30,28 @@ function calcDimensions (objArray) {
   return dimensions;
 }
 
-function getObjectIds (objectArray) {
-  let objIds = [];
+function getObjectIDs (objArray) {
+  /*
+   * Return an array of object IDs.
+   */
+  let objIDs = [];
 
-  objectArray.forEach(function(obj) {
-    objIds.push(obj.obj_id);
+  objArray.forEach(function(obj) {
+    objIDs.push(obj.obj_id);
   });
 
-  return objIds;
+  return objIDs;
 }
 
-function getStimulus (objectId) {
-  const object_list = pick_one_data.object_list;
+function getStimulus (objID) {
+  /*
+   * Based on an object ID, return the corresponding stimulus object.
+   */
+  const objList = pickOneData.object_list;
   let stimulus = undefined;
 
-  object_list.forEach(function(obj) {
-    if (obj.object_id == objectId) {
+  objList.forEach(function(obj) {
+    if (obj.object_id == objID) {
       stimulus = obj;
       return;
     }
@@ -47,10 +61,13 @@ function getStimulus (objectId) {
 }
 
 function getTrial (trialId) {
-  const trial_list = pick_one_data.trial_list;
+  /*
+   * Based on a trial ID, return trial object.
+   */
+  const trialList = pickOneData.trial_list;
   let trial = undefined;
 
-  trial_list.forEach(function(obj) {
+  trialList.forEach(function(obj) {
     if (obj.trial_id == trialId) {
       trial = obj;
       return;
@@ -63,7 +80,7 @@ function getTrial (trialId) {
 export default {
   images,
   calcDimensions,
-  getObjectIds,
+  getObjectIDs,
   getStimulus,
   getTrial
 };
