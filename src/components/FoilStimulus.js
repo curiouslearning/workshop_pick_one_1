@@ -1,4 +1,5 @@
 /**/
+
 import React from 'react';
 
 class FoilStimulus extends React.Component {
@@ -7,7 +8,7 @@ class FoilStimulus extends React.Component {
   }
 
   render() {
-    return();
+    return;
   }
 }
 

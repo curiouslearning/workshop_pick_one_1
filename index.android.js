@@ -7,16 +7,21 @@
 import React, { Component } from 'react';
 import {
   AppRegistry,
-  StyleSheet,
+  View
 } from 'react-native';
 
 import GameContainer from './src/components/GameContainer';
 
+const appID = 'PickOne';
+const trials = ['001', '002', '003'];
+
 export default class PickOne extends Component {
   render() {
     return (
-      <GameContainer>
-      </GameContainer>
+      <View style={{flex: 1}}>
+        <GameContainer appID={appID} trials={trials}>
+        </GameContainer>
+      </View>
     );
   }
 }

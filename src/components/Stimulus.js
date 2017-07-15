@@ -1,5 +1,6 @@
 /**/
 
+import PropTypes from 'prop-types';
 import React from 'react';
 import {
   Image,
@@ -8,37 +9,31 @@ import {
   View
 } from 'react-native';
 
-const Sound = require('react-native-sound');
-const amazing = new Sound('amazing.wav', Sound.MAIN_BUNDLE, (error) => {
-  if (error) {
-    console.log('failed to load the sound ', error);
-  }
+import gameUtil from 'PickOne/src/gameUtil';
 
-  console.log('duration in seconds: ' + amazing.getDuration() + 'number of channels: ' + amazing.getNumberOfChannels());
-});
+const Sound = require('react-native-sound');
+const stimulusDimension = 150;
 
 class Stimulus extends React.Component {
   constructor(props) {
     super(props);
+
+    this.stimulusDetails;
+    this.audio;
   }
 
   componentDidMount() {
-    if (this.props.type == 'audio') {
-      setTimeout(function() {
-        amazing.play();
-      }, 1);
-    }
+
   }
 
   componentWillUnMount() {
-    if (this.props.type == 'audio') {
-      amazing.release();
+    if (this.stimulusDetails.type == 'audio') {
+      this.audio.release();
     }
   }
 
   _onPressAudio() {
-    console.log('audio pressed!');
-    amazing.stop().play();
+    this.audio.stop().play();
   }
 
   _onPressStimulus(e) {
@@ -50,24 +45,38 @@ class Stimulus extends React.Component {
 
   render() {
     if (this.props.selected == this.props.stimulus && this.props.target == true) {
-      return(<Image source={require('PickOne/src/images/dog_celebrate01.png')} style={{width: 200, height: 200}}/>);
+      return(<Image source={require('PickOne/src/images/dog_celebrate01.png')} style={{width: stimulusDimension, height: stimulusDimension}}/>);
     } else if (this.props.selected == this.props.stimulus && this.props.target == false) {
-      return(<Image source={require('PickOne/src/images/dog_annoyed02.png')} style={{width: 200, height: 200}}/>);
+      return(<Image source={require('PickOne/src/images/dog_annoyed02.png')} style={{width: stimulusDimension, height: stimulusDimension}}/>);
     }
-    if (this.props.type == 'audio') {
+
+    this.stimulusDetails = gameUtil.getStimulus(this.props.stimulus);
+    if (this.stimulusDetails.type == 'audio') {
+      this.audio = new Sound(this.stimulusDetails.stimulus, Sound.MAIN_BUNDLE, (error) => {
+        if (error) {
+          console.log('failed to load the sound ', error);
+        }
+
+        console.log('duration in seconds: ' + this.audio.getDuration() + 'number of channels: ' + this.audio.getNumberOfChannels());
+      });
+
+      setTimeout(function() {
+        this.audio.play();
+      }.bind(this), 500);
+
       return(
-        <TouchableHighlight onPress={this._onPressAudio}>
+        <TouchableHighlight onPress={(e) => this._onPressAudio(e)}>
           <Image source={require('PickOne/src/images/audioOn.png')} style={{borderColor: 'black', borderRadius: 3, borderWidth: 3, width: 100, height: 100}}/>
         </TouchableHighlight>
       );
-    } else if (this.props.type == 'image') {
+    } else if (this.stimulusDetails.type == 'image') {
       return(
-        <Image source={require(this.props.stimulus)} style={{borderColor: 'black', borderRadius: 3, borderWidth: 3, width: 100, height: 100}}/>
+        <Image source={gameUtil.images[this.stimulusDetails.object_id]} style={{width: stimulusDimension, height: stimulusDimension}}/>
       );
     } else {
       return(
-        <TouchableHighlight onPress={(e) => this._onPressStimulus(e)} style={{borderColor: 'black', borderRadius: 3, borderWidth: 3, width: 200, height: 200}}>
-          <View style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
+        <TouchableHighlight onPress={(e) => this._onPressStimulus(e)} style={{borderColor: 'black', borderRadius: 3, borderWidth: 3, width: stimulusDimension, height: stimulusDimension}}>
+          <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
             <Text style={{color: 'black', fontSize: 50}}>
               { this.props.stimulus }
             </Text>
@@ -77,5 +86,13 @@ class Stimulus extends React.Component {
     }
   }
 }
+
+Stimulus.propTypes = {
+  objId: PropTypes.string,
+  onPress: PropTypes.func,
+  selected: PropTypes.string,
+  stimulus: PropTypes.string,
+  target: PropTypes.bool
+};
 
 export default Stimulus;

@@ -2,71 +2,104 @@
   "object_list": [
     {
   		"object_id" : "c",
-  		"stimulus" : "c"
+  		"stimulus" : "c",
+      "type" : "alpha"
   	},{
   		"object_id" : "m",
-  		"stimulus" : "m"
+  		"stimulus" : "m",
+      "type" : "alpha"
   	},{
   		"object_id" : "n",
-  		"stimulus" : "n"
+  		"stimulus" : "n",
+      "type" : "alpha"
   	},{
   		"object_id" : "p",
-  		"stimulus" : "p"
+  		"stimulus" : "p",
+      "type" : "alpha"
   	},{
   		"object_id" : "t",
-  		"stimulus" : "t"
+  		"stimulus" : "t",
+      "type" : "alpha"
   	},{
   		"object_id" : "a",
-  		"stimulus" : "a"
+  		"stimulus" : "a",
+      "type" : "alpha"
   	},{
   		"object_id" : "cat",
-  		"stimulus" : "cat"
+  		"stimulus" : "cat",
+      "type" : "alpha"
   	},{
   		"object_id" : "mat",
-  		"stimulus" : "mat"
+  		"stimulus" : "mat",
+      "type" : "alpha"
   	},{
   		"object_id" : "bat",
-  		"stimulus" : "bat"
+  		"stimulus" : "bat",
+      "type" : "alpha"
   	},{
   		"object_id" : "nat",
-  		"stimulus" : "nat"
+  		"stimulus" : "nat",
+      "type" : "alpha"
   	},{
   		"object_id" : "cap",
-  		"stimulus" : "cap"
+  		"stimulus" : "cap",
+      "type" : "alpha"
   	},{
   		"object_id" : "map",
-  		"stimulus" : "map"
+  		"stimulus" : "map",
+      "type" : "alpha"
   	},{
   		"object_id" : "nap",
-  		"stimulus" : "nap"
+  		"stimulus" : "nap",
+      "type" : "alpha"
   	},{
   		"object_id" : "pan",
-  		"stimulus" : "pan"
+  		"stimulus" : "pan",
+      "type" : "alpha"
   	},{
   		"object_id" : "pat",
-  		"stimulus" : "pat"
+  		"stimulus" : "pat",
+      "type" : "alpha"
   	},{
   		"object_id" : "pam",
-  		"stimulus" : "pam"
+  		"stimulus" : "pam",
+      "type" : "alpha"
   	},{
   		"object_id" : "man",
-  		"stimulus" : "man"
+  		"stimulus" : "man",
+      "type" : "alpha"
   	},{
   		"object_id" : "can",
-  		"stimulus" : "can"
+  		"stimulus" : "can",
+      "type" : "alpha"
   	},{
   		"object_id" : "bam",
-  		"stimulus" : "bam"
+  		"stimulus" : "bam",
+      "type" : "alpha"
   	},{
   		"object_id" : "ban",
-  		"stimulus" : "ban"
-  	},
+  		"stimulus" : "ban",
+      "type" : "alpha"
+  	},{
+      "object_id" : "cat_pic",
+      "stimulus" : "PickOne/src/images/cat.jpg",
+      "type" : "image"
+    },{
+      "object_id" : "c_sound",
+      "stimulus" : "c.wav",
+      "type" : "audio"
+    },{
+      "object_id" : "cap_audio",
+      "stimulus" : "cap.wav",
+      "type" : "audio"
+    }
   ],
   "trial_list": [
   	{
   		"trial_id" : "002",
   		"level_id" : "002",
   		"array_size" : "9",
+      "guidance_id" : "cat_pic",
   		"target_id" : "cat",
   		"obj_array" : [
   			{
@@ -103,6 +136,7 @@
   		"trial_id" : "001",
   		"level_id" : "001",
   		"array_size" : "6",
+      "guidance_id" : "c_sound",
   		"target_id" : "c",
   		"obj_array" : [
   			{
@@ -130,7 +164,8 @@
   		"trial_id" : "003",
   		"level_id" : "003",
   		"array_size" : "4",
-  		"target_id" : "c",
+      "guidance_id" : "cap_audio",
+  		"target_id" : "cap",
   		"obj_array" : [
   			{
   				"pos" : ["0", "0"],
