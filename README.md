@@ -66,7 +66,7 @@ The game is driven by data contained in a JSON file, which specifies the stimuli
 
 ### Data collection
 
-User responses are collected using the Curious Learning Data Collection API (see /src/CuriousLearningDataAPI.js). Upon each user response to a set of stimuli, the app calls the resportResponse function and logs data, including level, trial, time stamp, response time, foil list, and response value (see /src/GameContainer.js line 75).
+User responses are tracked using the Curious Learning Data Collection API (see /src/CuriousLearningDataAPI.js). Upon each user response to a set of stimuli, the app calls the reportResponse function and logs data, including level, trial, time stamp, response time, foil list, and response value (see /src/GameContainer.js line 75).
 
 ## History
 
