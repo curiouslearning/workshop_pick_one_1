@@ -77,10 +77,25 @@ function getTrial (trialId) {
   return trial;
 }
 
+function getTrials() {
+  /*
+   * Based on JSON data, return array of trials.
+   */
+  const trialList = pickOneData.trial_list;
+  let trials = [];
+
+  trialList.forEach(function(obj) {
+    trials.push(obj.trial_id);
+  });
+
+  return trials.sort();
+}
+
 export default {
   images,
   calcDimensions,
   getObjectIDs,
   getStimulus,
-  getTrial
+  getTrial,
+  getTrials
 };

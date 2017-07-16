@@ -9,9 +9,10 @@ import {
 } from 'react-native';
 
 import GameContainer from './src/components/GameContainer';
+import gameUtil from './src/gameUtil';
 
 const appID = 'PickOne';
-const trials = ['001', '002', '003'];
+const trials = gameUtil.getTrials();
 
 export default class PickOne extends Component {
   render() {

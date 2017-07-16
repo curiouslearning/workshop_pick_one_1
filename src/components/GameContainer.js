@@ -85,21 +85,23 @@ class GameContainer extends React.Component {
     );
 
     setTimeout(function(){
-      let trial = gameUtil.getTrial(this.props.trials[this.state.questionsAnswered]);
-      let objectIDs = gameUtil.getObjectIDs(trial.obj_array);
-      let dimensions = gameUtil.calcDimensions(trial.obj_array);
+      if (this.props.trials[this.state.questionsAnswered]) {
+        let trial = gameUtil.getTrial(this.props.trials[this.state.questionsAnswered]);
+        let objectIDs = gameUtil.getObjectIDs(trial.obj_array);
+        let dimensions = gameUtil.calcDimensions(trial.obj_array);
 
-      this.setState({
-        arraySize: parseInt(trial.array_size),
-        objArray: trial.obj_array,
-        objectIDs: objectIDs,
-        dimensions: dimensions,
-        guidanceID: trial.guidance_id,
-        targetID: trial.target_id,
-        trialStartTime: new Date(),
-        selected: undefined,
-        selectedCorrect: undefined
-      });
+        this.setState({
+          arraySize: parseInt(trial.array_size),
+          objArray: trial.obj_array,
+          objectIDs: objectIDs,
+          dimensions: dimensions,
+          guidanceID: trial.guidance_id,
+          targetID: trial.target_id,
+          trialStartTime: new Date(),
+          selected: undefined,
+          selectedCorrect: undefined
+        });
+      }
     }.bind(this), 2000);
   }
 
