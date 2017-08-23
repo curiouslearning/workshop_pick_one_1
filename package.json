@@ -1,0 +1,29 @@
+{
+  "name": "PickOne",
+  "version": "0.0.1",
+  "description": "Curious Learning: Workshops 5/17 Pick One of X Project 1",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:curiouslearning/workshop_pick_one_1.git"
+  },
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "react": "16.0.0-alpha.6",
+    "react-native": "0.44.2",
+    "react-native-sound": "^0.10.1"
+  },
+  "devDependencies": {
+    "babel-jest": "20.0.3",
+    "babel-preset-react-native": "1.9.2",
+    "jest": "20.0.4",
+    "prop-types": "^15.5.10",
+    "react-test-renderer": "16.0.0-alpha.6"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}

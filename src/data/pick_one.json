@@ -1,0 +1,186 @@
+{
+  "object_list": [
+    {
+  		"object_id" : "c",
+  		"stimulus" : "c",
+      "type" : "alpha"
+  	},{
+  		"object_id" : "m",
+  		"stimulus" : "m",
+      "type" : "alpha"
+  	},{
+  		"object_id" : "n",
+  		"stimulus" : "n",
+      "type" : "alpha"
+  	},{
+  		"object_id" : "p",
+  		"stimulus" : "p",
+      "type" : "alpha"
+  	},{
+  		"object_id" : "t",
+  		"stimulus" : "t",
+      "type" : "alpha"
+  	},{
+  		"object_id" : "a",
+  		"stimulus" : "a",
+      "type" : "alpha"
+  	},{
+  		"object_id" : "cat",
+  		"stimulus" : "cat",
+      "type" : "alpha"
+  	},{
+  		"object_id" : "mat",
+  		"stimulus" : "mat",
+      "type" : "alpha"
+  	},{
+  		"object_id" : "bat",
+  		"stimulus" : "bat",
+      "type" : "alpha"
+  	},{
+  		"object_id" : "nat",
+  		"stimulus" : "nat",
+      "type" : "alpha"
+  	},{
+  		"object_id" : "cap",
+  		"stimulus" : "cap",
+      "type" : "alpha"
+  	},{
+  		"object_id" : "map",
+  		"stimulus" : "map",
+      "type" : "alpha"
+  	},{
+  		"object_id" : "nap",
+  		"stimulus" : "nap",
+      "type" : "alpha"
+  	},{
+  		"object_id" : "pan",
+  		"stimulus" : "pan",
+      "type" : "alpha"
+  	},{
+  		"object_id" : "pat",
+  		"stimulus" : "pat",
+      "type" : "alpha"
+  	},{
+  		"object_id" : "pam",
+  		"stimulus" : "pam",
+      "type" : "alpha"
+  	},{
+  		"object_id" : "man",
+  		"stimulus" : "man",
+      "type" : "alpha"
+  	},{
+  		"object_id" : "can",
+  		"stimulus" : "can",
+      "type" : "alpha"
+  	},{
+  		"object_id" : "bam",
+  		"stimulus" : "bam",
+      "type" : "alpha"
+  	},{
+  		"object_id" : "ban",
+  		"stimulus" : "ban",
+      "type" : "alpha"
+  	},{
+      "object_id" : "cat_pic",
+      "stimulus" : "PickOne/src/images/cat.jpg",
+      "type" : "image"
+    },{
+      "object_id" : "c_sound",
+      "stimulus" : "c.wav",
+      "type" : "audio"
+    },{
+      "object_id" : "cap_audio",
+      "stimulus" : "cap.wav",
+      "type" : "audio"
+    }
+  ],
+  "trial_list": [
+  	{
+  		"trial_id" : "002",
+  		"level_id" : "002",
+  		"array_size" : "9",
+      "guidance_id" : "cat_pic",
+  		"target_id" : "cat",
+  		"obj_array" : [
+  			{
+  				"pos" : ["0", "0"],
+  				"obj_id" : "cat"
+        },{
+        	"pos" : ["0","1"],
+        	"obj_id" : "bat"
+        },{
+        	"pos" : ["1","0"],
+        	"obj_id" : "mat"
+        },{
+        	"pos" : ["1","1"],
+        	"obj_id" : "nat"
+        },{
+        	"pos" : ["0","2"],
+        	"obj_id" : "man"
+        },{
+        	"pos" : ["1","2"],
+        	"obj_id" : "pam"
+        },{
+        	"pos" : ["2","0"],
+        	"obj_id" : "pan"
+        },{
+        	"pos" : ["2","1"],
+        	"obj_id" : "can"
+        },{
+        	"pos" : ["2","2"],
+        	"obj_id" : "bam"
+        }
+  		]
+  	},
+    {
+  		"trial_id" : "001",
+  		"level_id" : "001",
+  		"array_size" : "6",
+      "guidance_id" : "c_sound",
+  		"target_id" : "c",
+  		"obj_array" : [
+  			{
+  				"pos" : ["0", "0"],
+  				"obj_id" : "a"
+        },{
+        	"pos" : ["0","1"],
+        	"obj_id" : "m"
+        },{
+        	"pos" : ["1","0"],
+        	"obj_id" : "n"
+        },{
+        	"pos" : ["1","1"],
+        	"obj_id" : "c"
+        },{
+        	"pos" : ["0","2"],
+        	"obj_id" : "t"
+        },{
+        	"pos" : ["1","2"],
+        	"obj_id" : "p"
+        }
+  		]
+  	},
+    {
+  		"trial_id" : "003",
+  		"level_id" : "003",
+  		"array_size" : "4",
+      "guidance_id" : "cap_audio",
+  		"target_id" : "cap",
+  		"obj_array" : [
+  			{
+  				"pos" : ["0", "0"],
+  				"obj_id" : "cat"
+        },{
+        	"pos" : ["0","1"],
+        	"obj_id" : "cap"
+        },{
+        	"pos" : ["1","0"],
+        	"obj_id" : "mat"
+        },{
+        	"pos" : ["1","1"],
+        	"obj_id" : "map"
+        }
+      ]
+    }
+  ]
+}
